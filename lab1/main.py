@@ -13,9 +13,9 @@ def solution(s):
     for i in range(len(divisors)):
         result.append(s.count(s[:divisors[i]]))
 
-    if len(result) == 0 and s != len(s) * s[0]:
+    if (len(result) == 0) and (s != len(s) * s[0]):
         return 1
-    elif len(result) == 0 and s == len(s) * s[0]:
+    elif (len(result) == 0) and s == (len(s) * s[0]):
         return len(s)
     else:
         return max(result)
