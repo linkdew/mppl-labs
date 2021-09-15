@@ -2,16 +2,12 @@ def solution(s):
     result = []
 
     def allNaturalDivisors(number):
-        divarray = []
         for k in range(2, int((number / 2)) + 1):
             if number % k == 0:
-                divarray.append(k)
-        return divarray
+                result.append(s.count(s[:k]))
+        return result
 
-    divisors = allNaturalDivisors(len(s))
-
-    for i in range(len(divisors)):
-        result.append(s.count(s[:divisors[i]]))
+    result = allNaturalDivisors(len(s))
 
     if (len(result) == 0) and (s != len(s) * s[0]):
         return 1
