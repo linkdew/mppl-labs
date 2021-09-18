@@ -1,26 +1,25 @@
 def solution(s):
+    sliced = []
     result = []
 
-    def allNaturalDivisors(number):
-        for k in range(2, int(number**0.5) + 1):
-            if number % k == 0:
-                result.append(s.count(s[:k]))
-                result.append(s.count(s[:(number // k)]))
-        return result
+    for i in range(len(s)):
+        sliced.append(s[:i + 1])
 
-    result = allNaturalDivisors(len(s))
+    for _, i in enumerate(sliced):
+        slicecount = s.count(i)
+        slicefreq = len(s) / len(i)
 
-    if (len(result) == 0) and (s != len(s) * s[0]):
-        return 1
-    elif (len(result) == 0) and s == (len(s) * s[0]):
-        return len(s)
-    else:
-        return max(result)
+        if (i * int(slicefreq)) == s:
+            result.append(slicecount)
+
+    return max(result)
 
 
 def test():
     assert solution("abccbaabccba") == 2, "Check your implementation!"
     assert solution("abcabcabcabc") == 4, "Check your implementation!"
+    assert solution("abcabcabcabcabcabcabcabc") == 8, "Check your implementation!"
+    assert solution("abccba" * 33) == 33, "Check your implementation!"
     print("Local tests for func passed!")
 
 
